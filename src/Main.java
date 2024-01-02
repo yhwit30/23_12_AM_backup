@@ -8,6 +8,7 @@ public class Main {
 	static List<Member> members = new ArrayList<>();
 
 	public static void main(String[] args) {
+		System.out.println();
 		System.out.println("== 프로그램 시작 == ");
 
 		makeTestData();
@@ -30,6 +31,7 @@ public class Main {
 				break;
 			}
 			if (cmd.equals("member join")) {
+				System.out.println();
 				System.out.println("==회원가입==");
 
 				int id = lastMemberId + 1;
@@ -44,8 +46,18 @@ public class Main {
 					}
 					break;
 				}
-				System.out.print("로그인 비밀번호 : ");
-				String loginPw = sc.nextLine();
+				String loginPw = null;
+				while (true) {
+					System.out.print("로그인 비밀번호 : ");
+					loginPw = sc.nextLine();
+					System.out.print("로그인 비밀번호 확인 : ");
+					String loginPwConfirm = sc.nextLine();
+					if (!loginPw.equals(loginPwConfirm)) {
+						System.out.println("비밀번호를 다시 확인해주세요.");
+						continue;
+					}
+					break;
+				}
 				System.out.print("이름 : ");
 				String name = sc.nextLine();
 
@@ -58,6 +70,7 @@ public class Main {
 			}
 
 			else if (cmd.equals("article write")) {
+				System.out.println();
 				System.out.println("==게시글 작성==");
 				int id = lastArticleId + 1;
 				String regDate = Util.getNowDate_TimeStr();
@@ -74,6 +87,7 @@ public class Main {
 				lastArticleId++;
 
 			} else if (cmd.startsWith("article list")) {
+				System.out.println();
 				System.out.println("==게시글 목록==");
 				if (articles.size() == 0) {
 					System.out.println("아무것도 없어");
@@ -198,7 +212,7 @@ public class Main {
 				System.out.println("사용할 수 없는 명령어입니다");
 			}
 		}
-
+		System.out.println();
 		System.out.println("== 프로그램 끝 == ");
 
 		sc.close();
