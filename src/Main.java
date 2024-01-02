@@ -62,7 +62,26 @@ public class Main {
 					}
 				}
 
-			} else if (cmd.startsWith("article detail")) {
+			} else if (cmd.startsWith("article list")) {
+				String[] cmdDiv = cmd.split(" ");
+
+				String search = cmdDiv[2];
+
+				for (int i = 0; i < articles.size(); i++) {
+					Article article = articles.get(i);
+					if (article.getTitle().contains(search)) {
+						if (Util.getNowDate_TimeStr().split(" ")[0].equals(article.getRegDate().split(" ")[0])) {
+							System.out.printf("  %4d  /   %s    /     %s   /   %d\n", article.getId(),
+									article.getTitle(), article.getRegDate().split(" ")[1], article.getHit());
+						} else {
+							System.out.printf("  %4d  /   %s    /     %s   /   %d\n", article.getId(),
+									article.getTitle(), article.getRegDate().split(" ")[0], article.getHit());
+						}
+					}
+				}
+			}
+
+			else if (cmd.startsWith("article detail")) {
 
 				String[] cmdDiv = cmd.split(" ");
 
