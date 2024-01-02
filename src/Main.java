@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 	static List<Article> articles = new ArrayList<>();
+	static List<Member> members = new ArrayList<>();
 
 	public static void main(String[] args) {
 		System.out.println("== 프로그램 시작 == ");
@@ -14,6 +15,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 
 		int lastArticleId = 3;
+		int lastMemberId = 0;
 
 		while (true) {
 			System.out.print("명령어 > ");
@@ -27,7 +29,35 @@ public class Main {
 			if (cmd.equals("exit")) {
 				break;
 			}
-			if (cmd.equals("article write")) {
+			if (cmd.equals("member join")) {
+				System.out.println("==회원가입==");
+
+				int id = lastMemberId + 1;
+				String regDate = Util.getNowDate_TimeStr();
+				String loginId = null;
+				while (true) {
+					System.out.print("로그인 아이디 : ");
+					loginId = sc.nextLine();
+					if (isJoinableLoginId(loginId) == false) {
+						System.out.println("중복된 아이디입니다.");
+						continue;
+					}
+					break;
+				}
+				System.out.print("로그인 비밀번호 : ");
+				String loginPw = sc.nextLine();
+				System.out.print("이름 : ");
+				String name = sc.nextLine();
+
+				Member member = new Member(id, regDate, loginId, loginPw, name);
+				members.add(member);
+
+				System.out.printf("%d번 회원이 가입되었습니다. %s님 환영합니다.\n", id, name);
+				lastMemberId++;
+
+			}
+
+			else if (cmd.equals("article write")) {
 				System.out.println("==게시글 작성==");
 				int id = lastArticleId + 1;
 				String regDate = Util.getNowDate_TimeStr();
@@ -56,14 +86,14 @@ public class Main {
 
 				if (searchKeyword.length() > 0) {
 					System.out.println("검색어 : " + searchKeyword);
+
 					forPrintArticles = new ArrayList<Article>();
-					
-					for(Article article : articles) {
-						if(article.getTitle().contains(searchKeyword)) {
+					for (Article article : articles) {
+						if (article.getTitle().contains(searchKeyword)) {
 							forPrintArticles.add(article);
 						}
 					}
-					if(forPrintArticles.size() == 0) {
+					if (forPrintArticles.size() == 0) {
 						System.out.println("  번호  /  제목    /   작성일     /   조회");
 						System.out.println("검색 결과 없음");
 						continue;
@@ -174,9 +204,17 @@ public class Main {
 		sc.close();
 	}
 
+	private static boolean isJoinableLoginId(String loginId) {
+		for (Member member : members) {
+			if (member.getLoginId().equals(loginId)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	private static Article getArticleById(int id) {
-		for (int i = 0; i < articles.size(); i++) {
-			Article article = articles.get(i);
+		for (Article article : articles) {
 			if (article.getId() == id) {
 				return article;
 			}
@@ -185,7 +223,7 @@ public class Main {
 	}
 
 	private static void makeTestData() {
-		System.out.println("테스트를 위한 데이터를 생성합니다.");
+		System.out.println("테스트를 위한 데이터를 생성했습니다.");
 		articles.add(new Article(1, "2023-12-12 12:12:12", Util.getNowDate_TimeStr(), "테스트제목1", "테스트내용1", 11));
 		articles.add(new Article(2, "2024-01-01 12:12:12", Util.getNowDate_TimeStr(), "테스트제목2", "테스트내용2", 22));
 		articles.add(new Article(3, Util.getNowDate_TimeStr(), Util.getNowDate_TimeStr(), "테스트제목3", "테스트내용3", 33));
