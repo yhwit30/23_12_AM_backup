@@ -81,7 +81,38 @@ public class Main {
 					System.out.println("내용 : " + foundArticle.getBody());
 				}
 
-			} else {
+			} else if (cmd.startsWith("article delete")) {
+
+				String[] cmdDiv = cmd.split(" ");
+
+				int id = 0;
+
+				try {
+					id = Integer.parseInt(cmdDiv[2]);
+				} catch (Exception e) {
+					System.out.println("번호는 정수로 입력해");
+					continue;
+				}
+
+				int foundIndex = -1;
+				for (int i = 0; i < articles.size(); i++) {
+					Article article = articles.get(i);
+					if (article.getId() == id) {
+						foundIndex = i;
+						break;
+					}
+				}
+				if (foundIndex == -1) {
+					System.out.printf("%d번 게시글은 없습니다\n", id);
+				} else {
+					articles.remove(foundIndex);
+					System.out.printf("%d번 게시글은 삭제되었습니다\n", id);
+				}
+
+				
+			}
+
+			else {
 				System.out.println("사용할 수 없는 명령어입니다");
 			}
 		}
