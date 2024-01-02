@@ -42,6 +42,7 @@ public class Main {
 
 				System.out.printf("%d번 글이 생성 되었습니다.\n", id);
 				lastArticleId++;
+
 			} else if (cmd.equals("article list")) {
 				System.out.println("==게시글 목록==");
 				if (articles.size() == 0) {
@@ -74,15 +75,7 @@ public class Main {
 					continue;
 				}
 
-				Article foundArticle = null;
-
-				for (int i = 0; i < articles.size(); i++) {
-					Article article = articles.get(i);
-					if (article.getId() == id) {
-						foundArticle = article;
-						break;
-					}
-				}
+				Article foundArticle = getArticleById(id);
 
 				if (foundArticle == null) {
 					System.out.printf("%d번 게시글은 없습니다\n", id);
@@ -110,15 +103,7 @@ public class Main {
 					continue;
 				}
 
-				Article foundArticle = null;
-
-				for (int i = 0; i < articles.size(); i++) {
-					Article article = articles.get(i);
-					if (article.getId() == id) {
-						foundArticle = article;
-						break;
-					}
-				}
+				Article foundArticle = getArticleById(id);
 
 				if (foundArticle == null) {
 					System.out.printf("%d번 게시글은 없습니다\n", id);
@@ -140,15 +125,7 @@ public class Main {
 					continue;
 				}
 
-				Article foundArticle = null;
-
-				for (int i = 0; i < articles.size(); i++) {
-					Article article = articles.get(i);
-					if (article.getId() == id) {
-						foundArticle = article;
-						break;
-					}
-				}
+				Article foundArticle = getArticleById(id);
 
 				if (foundArticle == null) {
 					System.out.printf("%d번 게시글은 없습니다\n", id);
@@ -176,11 +153,20 @@ public class Main {
 		sc.close();
 	}
 
+	private static Article getArticleById(int id) {
+		for (int i = 0; i < articles.size(); i++) {
+			Article article = articles.get(i);
+			if (article.getId() == id) {
+				return article;
+			}
+		}
+		return null;
+	}
+
 	private static void makeTestData() {
 		System.out.println("테스트를 위한 데이터를 생성합니다.");
-		articles.add(new Article(1, "2023-12-12 12:12:12", Util.getNowDate_TimeStr(), "제목1", "내용1", 11));
-		articles.add(new Article(2, "2024-01-01 12:12:12", Util.getNowDate_TimeStr(), "제목2", "내용2", 22));
-		articles.add(new Article(3, Util.getNowDate_TimeStr(), Util.getNowDate_TimeStr(), "제목3", "내용3", 33));
+		articles.add(new Article(1, "2023-12-12 12:12:12", Util.getNowDate_TimeStr(), "테스트제목1", "테스트내용1", 11));
+		articles.add(new Article(2, "2024-01-01 12:12:12", Util.getNowDate_TimeStr(), "테스트제목2", "테스트내용2", 22));
+		articles.add(new Article(3, Util.getNowDate_TimeStr(), Util.getNowDate_TimeStr(), "테스트제목3", "테스트내용3", 33));
 	}
 }
-
