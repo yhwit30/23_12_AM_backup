@@ -1,11 +1,11 @@
-class Article {
-	private int id;
-	private String regDate;
+package com.KoreaIT.java.AM.dto;
+
+public class Article extends Dto {
 	private String updateDate;
 
 	private String title;
 	private String body;
-	
+
 	private int hit;
 
 	public Article(int id, String regDate, String updateDate, String title, String body) {
@@ -20,7 +20,7 @@ class Article {
 		this.body = body;
 		this.hit = hit;
 	}
-	
+
 	public int getHit() {
 		return hit;
 	}

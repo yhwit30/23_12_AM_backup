@@ -1,13 +1,24 @@
+package com.KoreaIT.java.AM;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
-	static List<Article> articles = new ArrayList<>();
-	static List<Member> members = new ArrayList<>();
+import com.KoreaIT.java.AM.dto.Article;
+import com.KoreaIT.java.AM.dto.Member;
+import com.KoreaIT.java.Util.Util;
 
-	public static void main(String[] args) {
+public class App {
+	List<Article> articles = new ArrayList<>();
+	List<Member> members = new ArrayList<>();
+
+	public App() {
+		articles = new ArrayList<Article>();
+		members = new ArrayList<Member>();
+	}
+
+	public void run() {
+
 		System.out.println();
 		System.out.println("== 프로그램 시작 == ");
 
@@ -19,6 +30,7 @@ public class Main {
 		int lastMemberId = 0;
 
 		while (true) {
+			System.out.println();
 			System.out.print("명령어 > ");
 			String cmd = sc.nextLine().trim();
 
@@ -212,13 +224,17 @@ public class Main {
 				System.out.println("사용할 수 없는 명령어입니다");
 			}
 		}
+
+		// TODO Auto-generated method stub
+
 		System.out.println();
 		System.out.println("== 프로그램 끝 == ");
 
 		sc.close();
+
 	}
 
-	private static boolean isJoinableLoginId(String loginId) {
+	private boolean isJoinableLoginId(String loginId) {
 		for (Member member : members) {
 			if (member.getLoginId().equals(loginId)) {
 				return false;
@@ -227,7 +243,7 @@ public class Main {
 		return true;
 	}
 
-	private static Article getArticleById(int id) {
+	private Article getArticleById(int id) {
 		for (Article article : articles) {
 			if (article.getId() == id) {
 				return article;
@@ -236,10 +252,11 @@ public class Main {
 		return null;
 	}
 
-	private static void makeTestData() {
+	private void makeTestData() {
 		System.out.println("테스트를 위한 데이터를 생성했습니다.");
 		articles.add(new Article(1, "2023-12-12 12:12:12", Util.getNowDate_TimeStr(), "테스트제목1", "테스트내용1", 11));
 		articles.add(new Article(2, "2024-01-01 12:12:12", Util.getNowDate_TimeStr(), "테스트제목2", "테스트내용2", 22));
 		articles.add(new Article(3, Util.getNowDate_TimeStr(), Util.getNowDate_TimeStr(), "테스트제목3", "테스트내용3", 33));
+
 	}
 }
