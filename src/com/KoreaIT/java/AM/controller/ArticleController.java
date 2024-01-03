@@ -8,10 +8,9 @@ import com.KoreaIT.java.AM.dto.Article;
 import com.KoreaIT.java.Util.Util;
 
 public class ArticleController extends Controller {
-	List<Article> articles;
+	private List<Article> articles;
 	private Scanner sc;
 	private String cmd;
-	private String actionMethodName;
 
 	public ArticleController(Scanner sc) {
 		this.articles = new ArrayList<Article>();
@@ -20,7 +19,6 @@ public class ArticleController extends Controller {
 	}
 
 	public void doAction(String actionMethodName, String cmd) {
-		this.actionMethodName = actionMethodName;
 		this.cmd = cmd;
 
 		switch (actionMethodName) {
@@ -47,7 +45,7 @@ public class ArticleController extends Controller {
 
 	int lastArticleId = 3;
 
-	public void doWrite() {
+	private void doWrite() {
 		System.out.println();
 		System.out.println("==게시글 작성==");
 		int id = lastArticleId + 1;
@@ -66,7 +64,7 @@ public class ArticleController extends Controller {
 
 	}
 
-	public void showList() {
+	private void showList() {
 		System.out.println();
 		System.out.println("==게시글 목록==");
 		if (articles.size() == 0) {
@@ -108,7 +106,7 @@ public class ArticleController extends Controller {
 
 	}
 
-	public void showDetail() {
+	private void showDetail() {
 		String[] cmdDiv = cmd.split(" ");
 
 		int id = 0;
@@ -137,7 +135,7 @@ public class ArticleController extends Controller {
 
 	}
 
-	public void doDelete() {
+	private void doDelete() {
 		String[] cmdDiv = cmd.split(" ");
 
 		int id = 0;
@@ -160,7 +158,7 @@ public class ArticleController extends Controller {
 
 	}
 
-	public void doModify() {
+	private void doModify() {
 		String[] cmdDiv = cmd.split(" ");
 
 		int id = 0;
@@ -202,7 +200,7 @@ public class ArticleController extends Controller {
 	}
 
 	public void makeTestData() {
-		System.out.println("테스트를 위한 데이터를 생성했습니다.");
+		System.out.println("테스트를 위한 게시글 데이터를 생성했습니다.");
 		articles.add(new Article(1, "2023-12-12 12:12:12", Util.getNowDate_TimeStr(), "테스트제목1", "테스트내용1", 11));
 		articles.add(new Article(2, "2024-01-01 12:12:12", Util.getNowDate_TimeStr(), "테스트제목2", "테스트내용2", 22));
 		articles.add(new Article(3, Util.getNowDate_TimeStr(), Util.getNowDate_TimeStr(), "테스트제목3", "테스트내용3", 33));

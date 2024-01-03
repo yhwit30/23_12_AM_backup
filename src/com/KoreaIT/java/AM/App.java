@@ -18,6 +18,7 @@ public class App {
 		ArticleController articleController = new ArticleController(sc);
 
 		articleController.makeTestData();
+		memberController.makeTestData();
 
 		while (true) {
 			System.out.println();
@@ -39,6 +40,7 @@ public class App {
 				System.out.println("명령어를 다시 확인하세요2");
 				continue;
 			}
+
 			String actionMethodName = cmdBits[1];
 
 			if (controllerName.equals("article")) {
@@ -49,7 +51,6 @@ public class App {
 				System.out.println("사용할 수 없는 명령어입니다3");
 				continue;
 			}
-
 			controller.doAction(actionMethodName, cmd);
 		}
 		System.out.println();
