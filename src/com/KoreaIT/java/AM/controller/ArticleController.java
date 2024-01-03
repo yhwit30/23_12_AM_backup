@@ -7,14 +7,42 @@ import java.util.Scanner;
 import com.KoreaIT.java.AM.dto.Article;
 import com.KoreaIT.java.Util.Util;
 
-public class ArticleController {
+public class ArticleController extends Controller {
 	List<Article> articles;
 	private Scanner sc;
+	private String cmd;
+	private String actionMethodName;
 
-	public ArticleController(Scanner sc, List<Article> articles) {
-		this.articles = articles;
+	public ArticleController(Scanner sc) {
+		this.articles = new ArrayList<Article>();
 		this.sc = sc;
 
+	}
+
+	public void doAction(String actionMethodName, String cmd) {
+		this.actionMethodName = actionMethodName;
+		this.cmd = cmd;
+
+		switch (actionMethodName) {
+		case "write":
+			doWrite();
+			break;
+		case "list":
+			showList();
+			break;
+		case "detail":
+			showDetail();
+			break;
+		case "modify":
+			doModify();
+			break;
+		case "delete":
+			doDelete();
+			break;
+		default:
+			System.out.println("명령어를 확인해주세요4");
+			break;
+		}
 	}
 
 	int lastArticleId = 3;
@@ -38,7 +66,7 @@ public class ArticleController {
 
 	}
 
-	public void showList(String cmd) {
+	public void showList() {
 		System.out.println();
 		System.out.println("==게시글 목록==");
 		if (articles.size() == 0) {
@@ -80,7 +108,7 @@ public class ArticleController {
 
 	}
 
-	public void showDetail(String cmd) {
+	public void showDetail() {
 		String[] cmdDiv = cmd.split(" ");
 
 		int id = 0;
@@ -109,7 +137,7 @@ public class ArticleController {
 
 	}
 
-	public void doDelete(String cmd) {
+	public void doDelete() {
 		String[] cmdDiv = cmd.split(" ");
 
 		int id = 0;
@@ -132,7 +160,7 @@ public class ArticleController {
 
 	}
 
-	public void doModify(String cmd) {
+	public void doModify() {
 		String[] cmdDiv = cmd.split(" ");
 
 		int id = 0;
