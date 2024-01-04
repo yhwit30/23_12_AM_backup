@@ -6,9 +6,13 @@ import java.util.List;
 import com.KoreaIT.java.AM.dto.Member;
 
 public class MemberDao {
-public List<Member> members;
-	
+	public List<Member> members;
+
 	public MemberDao() {
 		members = new ArrayList<>();
+	}
+
+	public List<Member> getMembers() {
+		return members;
 	}
 }

@@ -1,6 +1,7 @@
 package com.KoreaIT.java.AM.dto;
 
 public class Member extends Dto {
+
 	private String loginId;
 	private String loginPw;
 	private String name;
@@ -11,22 +12,6 @@ public class Member extends Dto {
 		this.loginId = loginId;
 		this.loginPw = loginPw;
 		this.name = name;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(String regDate) {
-		this.regDate = regDate;
 	}
 
 	public String getLoginId() {
@@ -51,6 +36,22 @@ public class Member extends Dto {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 
 }
