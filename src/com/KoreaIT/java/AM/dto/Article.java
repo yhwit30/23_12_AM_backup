@@ -7,7 +7,7 @@ public class Article extends Dto {
 	private String body;
 
 	private int memberId;
-	
+
 	private int hit;
 
 	public Article(int id, String regDate, String updateDate, int memberId, String title, String body) {

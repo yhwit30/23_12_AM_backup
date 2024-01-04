@@ -85,13 +85,13 @@ public class ArticleController extends Controller {
 				}
 			}
 			if (forPrintArticles.size() == 0) {
-				System.out.println("  번호  /   작성일   /  작성자  /  제목  /   조회");
+				System.out.println("  번호  /   작성일      /  작성자  /  제목  /   조회");
 				System.out.println("검색 결과 없음");
 				return;
 			}
 		}
 
-		System.out.println("  번호  /   작성일   /  작성자  /  제목  /   조회");
+		System.out.println("  번호  /   작성일      /  작성자  /  제목  /   조회");
 		for (int i = forPrintArticles.size() - 1; i >= 0; i--) {
 			Article article = forPrintArticles.get(i);
 			if (Util.getNowDate_TimeStr().split(" ")[0].equals(article.getRegDate().split(" ")[0])) {
@@ -155,6 +155,12 @@ public class ArticleController extends Controller {
 			System.out.printf("%d번 게시글은 없습니다\n", id);
 			return;
 		}
+
+		if (foundArticle.getMemberId() != loginedMember.getId()) {
+			System.out.println("권한 없음");
+			return;
+		}
+
 		articles.remove(foundArticle);
 		System.out.println(id + "번 글이 삭제되었습니다.");
 
@@ -176,6 +182,11 @@ public class ArticleController extends Controller {
 
 		if (foundArticle == null) {
 			System.out.printf("%d번 게시글은 없습니다\n", id);
+			return;
+		}
+
+		if (foundArticle.getMemberId() != loginedMember.getId()) {
+			System.out.println("권한 없음");
 			return;
 		}
 
