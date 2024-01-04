@@ -13,31 +13,33 @@ public class App {
 
 		Scanner sc = new Scanner(System.in);
 
-		Controller controller = null;
 		MemberController memberController = new MemberController(sc);
 		ArticleController articleController = new ArticleController(sc);
+
+		Controller controller = null;
 
 		articleController.makeTestData();
 		memberController.makeTestData();
 
 		while (true) {
-			System.out.println();
 			System.out.print("명령어 > ");
 			String cmd = sc.nextLine().trim();
 
 			if (cmd.length() == 0) {
-				System.out.println("명령어를 입력하세요");
+				System.out.println("명령어를 입력하세요1");
 				continue;
 			}
+
 			if (cmd.equals("exit")) {
 				break;
 			}
 
 			String[] cmdBits = cmd.split(" ");
+
 			String controllerName = cmdBits[0];
 
 			if (cmdBits.length == 1) {
-				System.out.println("명령어를 다시 확인하세요2");
+				System.out.println("명령어를 확인해줘2");
 				continue;
 			}
 
@@ -51,9 +53,10 @@ public class App {
 				System.out.println("사용할 수 없는 명령어입니다3");
 				continue;
 			}
+
 			controller.doAction(actionMethodName, cmd);
 		}
-		System.out.println();
+
 		System.out.println("== 프로그램 끝 == ");
 
 		sc.close();
