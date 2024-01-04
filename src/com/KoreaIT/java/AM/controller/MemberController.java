@@ -29,16 +29,19 @@ public class MemberController extends Controller {
 		case "login":
 			if (isLogined()) {
 				System.out.println("이미 로그인 상태야");
-				break;
+				return;
 			}
 			doLogin();
 			break;
 		case "logout":
 			if (!isLogined()) {
 				System.out.println("이미 로그아웃 상태야");
-				break;
+				return;
 			}
 			doLogout();
+			break;
+		case "list":
+			showList();
 			break;
 		default:
 			System.out.println("명령어 확인해 (actionMethodName 오류)5");
@@ -118,6 +121,14 @@ public class MemberController extends Controller {
 		System.out.printf("%d번 회원이 가입 되었습니다. %s님 환영합니다.\n", id, name);
 		lastMemberId++;
 
+	}
+
+	public void showList() {
+		for (int i = members.size() - 1; i >= 0; i--) {
+			Member member = members.get(i);
+			System.out.printf("  %d  /  %s   /   %s   /   %s   /   %s\n", member.getId(), member.getRegDate(),
+					member.getLoginId(), member.getLoginPw(), member.getName());
+		}
 	}
 
 	private Member getMemberByLoginId(String loginId) {
