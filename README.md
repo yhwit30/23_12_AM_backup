@@ -14,3 +14,9 @@
 
 ## 메모
 - controller 클래스에 static 변수로 member 로그인과 같은 기능을 구현함
+
+  <br>
+
+![image](https://github.com/yhwit30/23_12_AM_backup/assets/153142837/06f282c0-b46c-4903-8e7a-95d8f9faab13)
+
+
