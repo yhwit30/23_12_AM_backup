@@ -6,7 +6,7 @@
 [App / controller / service / dao / dto / util]
 
 - App : console 사용자가 보는 화면 가정
-- controller : crud 기능 요청을 분류
+- controller : crud 기능 요청을 분류, 회원가입 및 로그인 기능
 - service : 컨트롤러의 요청을 처리
 - dao(Data Access Object) : DB 데이터에 접근하기 위한 객체(Repository 느낌)
 - dto(Data Transfer Object) : 데이터 이동 위한 객체
